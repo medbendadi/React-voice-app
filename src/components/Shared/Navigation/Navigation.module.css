@@ -1,0 +1,21 @@
+.navbar{
+   padding: 20px 0;
+}
+
+.brandStyling{
+   color: #fff;
+   text-decoration: none;
+   font-weight: bolder;
+   font-size: 22px;
+   display: flex;
+   align-items: center;
+}
+
+.logoImage{
+   height: 35px;
+}
+
+.logoText{
+   font-family: 'Montserrat', sans-serif;
+   margin-left: 10px;
+}
