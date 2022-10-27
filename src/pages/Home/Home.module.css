@@ -9,7 +9,7 @@
    width: 500px;
    max-width: 90%;
    min-height: 300px;
-   background-color: #222;
+   background-color: var(--second-bg);
    padding: 60px 30px;
    border-radius: 20px;
    text-align: center;
@@ -27,12 +27,12 @@
 
 .headingContent p{
    font-size: 1.3rem;
-   color: rgb(205, 205, 205);
+   color: var(--second-text);
    margin: 10px 0 40px;
 }
 
 .headingContent p span{
-   color: #c3a8ff;
+   color: var(--purple);
 }
 
 
@@ -40,13 +40,13 @@
 .signInWrapper{
    font-size: 12px;
    margin-top: 15px;
-   color: rgb(205, 205, 205);
+   color: var(--second-text);
    font-family: 'Montserrat', sans-serif;
    vertical-align: middle;
 }
 .signInWrapper a{
    margin-left: 10px;
-   color: #fff;
+   color: var(--main-text);
    font-weight: bold;
    text-decoration: none;
 }

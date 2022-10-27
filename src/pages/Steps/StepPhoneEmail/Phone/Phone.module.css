@@ -1,0 +1,6 @@
+.bottomParagraph{
+   color: var(--second-text);
+   width: 70%;
+   margin: 0 auto;
+   margin-top: 20px;
+}

@@ -1,0 +1,45 @@
+.cardWrapper{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-top: 6rem;
+   /* background-color: ; */
+}
+
+.buttonWrap{
+   margin-bottom: 15px;
+   display: flex;
+   align-items: center;
+   justify-content: flex-end;
+}
+.buttonWrap button{
+   background-color: transparent;
+   cursor: pointer;
+   width: 60px;
+   height: 60px;
+   background-color: var(--input-bg);
+   border-radius: 10px;
+}
+
+.buttonWrap button:last-child{
+   margin-left: 10px;
+}
+
+.active{
+   background-color: var(--blue) !important;
+}
+
+.buttonWrap button svg{
+   color: var(--main-text);
+   width: 30px;
+   height: 30px;
+}
+
+.bottomParagraph{
+   color: var(--second-text);
+   width: 70%;
+   margin: 0 auto;
+   margin-top: 20px;
+   font-size: .8rem;
+   text-align: center;
+}

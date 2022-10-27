@@ -3,7 +3,7 @@
 }
 
 .brandStyling{
-   color: #fff;
+   color: var(--main-text);
    text-decoration: none;
    font-weight: bolder;
    font-size: 22px;

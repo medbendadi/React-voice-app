@@ -1,0 +1,37 @@
+.PhoneInputCotainer {
+   /* width: fit-content; */
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-bottom: 30px;
+}
+
+.PhoneInputCotainer div{
+   width: fit-content;
+}
+
+.PhoneInputCotainer .react-tel-input .form-control, .PhoneInputCotainer .react-tel-input .flag-dropdown {
+   background: var(--input-bg);
+   border: none;
+   color: #fff;
+}
+
+.PhoneInputCotainer .react-tel-input .selected-flag .arrow{
+   border-top: 4px solid #fff;
+}
+
+.PhoneInputCotainer .react-tel-input .country-list {
+   background: var(--input-bg);
+}
+
+.PhoneInputCotainer .react-tel-input .country-list .country:hover{
+   background: var(--blue);
+}
+
+.react-tel-input .country-list .country.highlight, .react-tel-input .flag-dropdown.open .selected-flag, .react-tel-input .selected-flag:hover, .react-tel-input .selected-flag:focus {
+   background: var(--blue);
+}
+
+.react-tel-input .country-list .country .dial-code{
+   color: var(--second-text);
+}

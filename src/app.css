@@ -1,6 +1,55 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&family=Nunito:wght@400;500&display=swap');
 /* font-family: 'Montserrat', sans-serif; */
 
+
+
+:root {
+  --main-bg: #121212;
+  --second-bg: #1D1D1D;
+  --main-bg-2: #181629;
+  --second-bg-2: #25223F;
+  --main-text: #FFFFFF;
+  --second-text: rgb(205, 205, 205);
+  --placeholder-color: #454545;
+  --input-bg: #262626;
+  --hr-color: #323232;
+  --success: #20BD5F;
+  --danger: #F44336;
+  --pink: #E91E63;
+  --blue: #0077FF;
+  --indigo: #5453E0;
+  --purple: #c3a8ff;
+}
+
+/* Dracula */
+[data-theme='dracula'] {
+  --main-bg: #282a36;
+  --bg-text: #313340;
+  --text-color: #efefef;
+  --accent-color: #bd93f9;
+  --background-color: #bd93f95d;
+  --titlebar-bg: #1e1f29;
+  --sidebar-bg: #343746;
+  --sidebar-hover-bg: #3c3d51;
+  --explorer-bg: #21222c;
+  --explorer-hover-bg: #313241;
+  --explorer-border: #161a1d;
+  --tabs-bg: #191a21;
+  --tab-bg: #21222c;
+  --tab-active-bg: #282a36;
+  --tab-border: #191a21;
+  --bottombar-bg: #191a21;
+  --bottombar-border: #191a21;
+  --button-bg: #44475a;
+  --button-text: #f8f8f2;
+  --bottombar-hover-bg: #4f4f52;
+  --scrollbar-track-bg: #282a36;
+  --scrollbar-thumb-bg: #454647;
+  --article-bg: #21222c;
+}
+
+
+
 html {
   box-sizing: border-box;
   font-size: 16px;
@@ -33,7 +82,7 @@ img {
 }
 
 body {
-  background: #121212;
+  background: var(--main-bg);
   font-family: 'Nunito', sans-serif;
   color: #fff;
 }
