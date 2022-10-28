@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from '../../../components/Shared/Button/Button'
 import Card from '../../../components/Shared/Card/Card'
 import { useDispatch, useSelector } from 'react-redux'
