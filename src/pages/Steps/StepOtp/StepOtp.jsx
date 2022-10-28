@@ -10,6 +10,7 @@ import { verifyOtp } from '../../../http'
 import { useSelector } from 'react-redux'
 import { setAuth } from '../../../app/authSlice'
 import { useDispatch } from 'react-redux'
+import { toast } from 'react-toastify'
 
 const StepOtp = () => {
    const [otp, setOtp] = useState('')
@@ -18,6 +19,10 @@ const StepOtp = () => {
 
 
    async function submit() {
+      if (!otp || !phone || !hash) {
+         toast.error('Invalid Code')
+         return;
+      }
       try {
          const { data } = await verifyOtp({ otp, phone, hash })
          dispatch(setAuth(data))
@@ -31,7 +36,11 @@ const StepOtp = () => {
       <>
          <div className={styles.cardWrapper}>
             <Card title='Enter the code we just texted tou' icon='mail-icon'>
-               <TextInput value={otp} type='email' onChange={(e) => setOtp(e.target.value)} />
+               <TextInput
+                  value={otp}
+                  type='text'
+                  placeholder='code'
+                  onChange={(e) => setOtp(e.target.value)} />
                <div>
                   <div>
                      <Button onClick={submit} text='Next' />

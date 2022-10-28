@@ -14,6 +14,8 @@ const Phone = ({ onNext }) => {
    const dispatch = useDispatch();
 
    const handleNext = async () => {
+      if (!phoneNumber) return toast.error('Invalid Number');
+
       const url = `https://phonevalidation.abstractapi.com/v1/?api_key=88f4e35156fe4cfcb55c321881c39c79&phone=${phoneNumber}`
 
       const res = await fetch(url)
@@ -23,7 +25,7 @@ const Phone = ({ onNext }) => {
          if (data.valid) {
             const resp = await sendOtp({ phone: phoneNumber });
             if (resp.status === 200) {
-               console.log(resp);
+               console.log(resp.data);
                dispatch(setOtp({ phone: resp.data.phone, hash: resp.data.hash }))
                onNext()
             }

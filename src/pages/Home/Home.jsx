@@ -28,7 +28,7 @@ const Home = () => {
             </div>
             <div className={styles.signInWrapper}>
                <span>Have an invite text ?</span>
-               <Link to='/login'>
+               <Link to='/authenticate'>
                   Register
                </Link>
             </div>

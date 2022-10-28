@@ -1,0 +1,4 @@
+.paragraph{
+   composes: bottomParagraph from '../StepPhoneEmail/Step.module.css';
+   margin: 0 auto 20px;
+}

@@ -10,10 +10,17 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css';
 
 import { useSelector } from 'react-redux';
+import { useLoadingWithRefresh } from './hooks/useLoadingWithRefresh';
+
+import Loader from './components/Shared/Loader/Loader';
 
 
 function App() {
-  return (
+
+  const { loading } = useLoadingWithRefresh()
+  // const loading = true
+
+  return loading ? <Loader message='Loading. Wait for a second...' /> : (
     <BrowserRouter>
       <Navigation />
       <ToastContainer
@@ -61,6 +68,7 @@ function App() {
       </Routes>
     </BrowserRouter>
   )
+
 }
 
 
