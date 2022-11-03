@@ -1,11 +1,10 @@
 import React from 'react';
 import styles from './Card.module.css';
 
-const Card = ({ title, icon, children }) => {
+const Card = ({ title, icon, children, ...props }) => {
    return (
-      <div className={styles.card}>
+      <div className={styles.card} {...props}>
          <div className={styles.headingWrapper}>
-            {/* <img src={`/images/${icon}.png`} alt="logo" /> */}
             {title && <h1 className={styles.heading}>{title}</h1>}
          </div>
          {children}

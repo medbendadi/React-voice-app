@@ -3,7 +3,6 @@ import Button from '../../../components/Shared/Button/Button'
 
 import Card from '../../../components/Shared/Card/Card'
 import TextInput from '../../../components/Shared/TextInput/TextInput'
-
 import styles from './StepOtp.module.css'
 
 import { verifyOtp } from '../../../http'
@@ -13,16 +12,21 @@ import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
 
 const StepOtp = () => {
-   const [otp, setOtp] = useState('')
    const dispatch = useDispatch()
    const { phone, hash } = useSelector((state) => state.auth.otp)
+   const [state, setState] = useState({ value: "", otp1: "", otp2: "", otp3: "", otp4: "", disable: true })
 
 
-   async function submit() {
-      if (!otp || !phone || !hash) {
+
+   async function submit(e) {
+      e.preventDefault()
+      if (!state.otp1 || !state.otp2 || !state.otp3 || !state.otp4 || !phone || !hash) {
          toast.error('Invalid Code')
          return;
+
       }
+      const otp = state.otp1 + state.otp2 + state.otp3 + state.otp4
+
       try {
          const { data } = await verifyOtp({ otp, phone, hash })
          dispatch(setAuth(data))
@@ -31,26 +35,95 @@ const StepOtp = () => {
       }
    }
 
+   function handleChange(value1, event) {
+      setState({ ...state, [value1]: event.target.value })
+      console.log(event.target.value);
+   }
 
+   const inputfocus = (elmnt) => {
+      if (elmnt.key === "Delete" || elmnt.key === "Backspace") {
+         if (elmnt.target.value === '') {
+            const next = elmnt.target.tabIndex - 2;
+            if (next > -1) {
+               elmnt.target.form.elements[next].focus()
+            }
+         }
+      }
+      else {
+         if (elmnt.target.value !== '') {
+            const next = elmnt.target.tabIndex;
+            if (next < 4) {
+               elmnt.target.form.elements[next].focus()
+            }
+         }
+      }
+
+   }
    return (
       <>
-         <div className={styles.cardWrapper}>
-            <Card title='Enter the code we just texted tou' icon='mail-icon'>
-               <TextInput
+         <form onSubmit={submit}>
+            <div className={styles.cardWrapper}>
+               <Card title='Enter the code we just texted tou' icon='mail-icon'>
+                  <div className={styles.otpContainer}>
+
+                     <input
+                        name="otp1"
+                        type="text"
+                        autoComplete="off"
+                        className="otpInput"
+                        value={state.otp1}
+                        autoFocus
+                        // onKeyPress={keyPressed}
+                        onChange={e => handleChange("otp1", e)}
+                        tabIndex="1" maxLength="1" onKeyUp={e => inputfocus(e)}
+
+                     />
+                     <input
+                        name="otp2"
+                        type="text"
+                        autoComplete="off"
+                        className="otpInput"
+                        value={state.otp2}
+                        onChange={e => handleChange("otp2", e)}
+                        tabIndex="2" maxLength="1" onKeyUp={e => inputfocus(e)}
+
+                     />
+                     <input
+                        name="otp3"
+                        type="text"
+                        autoComplete="off"
+                        className="otpInput"
+                        value={state.otp3}
+                        onChange={e => handleChange("otp3", e)}
+                        tabIndex="3" maxLength="1" onKeyUp={e => inputfocus(e)}
+
+                     />
+                     <input
+                        name="otp4"
+                        type="text"
+                        autoComplete="off"
+                        className="otpInput"
+                        value={state.otp4}
+                        onChange={e => handleChange("otp4", e)}
+                        tabIndex="4" maxLength="1" onKeyUp={e => inputfocus(e)}
+                     />
+                  </div>
+                  {/* <TextInput
                   value={otp}
                   type='text'
                   placeholder='code'
-                  onChange={(e) => setOtp(e.target.value)} />
-               <div>
+                  onChange={(e) => setOtp(e.target.value)} /> */}
                   <div>
-                     <Button onClick={submit} text='Next' />
+                     <div>
+                        <Button text='Next' />
+                     </div>
+                     <p className={styles.bottomParagraph}>
+                        By entering your email, you're agreeing to our Terms of Service and Privacy Policy. Thanks!
+                     </p>
                   </div>
-                  <p className={styles.bottomParagraph}>
-                     By entering your email, you're agreeing to our Terms of Service and Privacy Policy. Thanks!
-                  </p>
-               </div>
-            </Card>
-         </div>
+               </Card>
+            </div>
+         </form>
       </>
    )
 }

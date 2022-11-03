@@ -7,6 +7,7 @@ const TextInput = ({ ...props }) => {
             className={styles.input}
             type="text"
             autoFocus
+            style={{ width: props.fullwidth == 'true' ? '100%' : 'inherit' }}
             {...props}
          />
       </div>

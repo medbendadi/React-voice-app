@@ -13,6 +13,8 @@ import { useSelector } from 'react-redux';
 import { useLoadingWithRefresh } from './hooks/useLoadingWithRefresh';
 
 import Loader from './components/Shared/Loader/Loader';
+import Room from './pages/Room/Room';
+import Profile from './pages/Profile/Profile';
 
 
 function App() {
@@ -35,12 +37,18 @@ function App() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
+        className="toastContainer"
       />
 
       <Routes>
-        <Route path='/' element={
-          <Home />
-        } />
+        <Route
+          path="/"
+          element={
+            <GuestRoute>
+              <Home />
+            </GuestRoute>
+          }
+        />
         <Route
           path="/authenticate"
           element={
@@ -62,6 +70,30 @@ function App() {
           element={
             <PrivateRoute>
               <Rooms />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/room/:id"
+          element={
+            <PrivateRoute>
+              <Room />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/room/:id/:password"
+          element={
+            <PrivateRoute>
+              <Room />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <Profile />
             </PrivateRoute>
           }
         />

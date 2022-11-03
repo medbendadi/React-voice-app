@@ -1,62 +1,47 @@
 import axios from 'axios';
+
 const api = axios.create({
    baseURL: process.env.REACT_APP_API,
    withCredentials: true,
    headers: {
-      // 'content-type': 'application/json',
+      // 'Content-type': 'application/json',
       Accept: 'application/json',
-   }
-})
+   },
+});
 
+// List of all the endpoints
+export const sendOtp = (data) => api.post('/api/send-otp', data);
+export const verifyOtp = (data) => api.post('/api/verify-otp', data);
+export const activate = (data) => api.post('/api/activate', data);
+export const update = (userId, data) => api.post(`/api/users/update/${userId}`, data);
+export const logout = () => api.post('/api/logout');
+export const createRoom = (data) => api.post('/api/rooms', data);
+export const createPrivateRoom = (data) => api.post('/api/rooms/private', data);
+export const getAllRooms = () => api.get('/api/rooms');
+export const getRoom = (roomId) => api.get(`/api/rooms/${roomId}`);
+export const getPrivateRoom = (roomId, data) => api.post(`/api/rooms/private/${roomId}`, data);
+export const closeRoom = (roomId) => api.delete(`/api/rooms/${roomId}`);
+// export const closeRoom = (roomId) => api.delete(`/api/rooms/${roomId}`);
 
-// EndPoints List:
-
-export const sendOtp = (obj) => api.post('/api/send-otp', obj)
-export const verifyOtp = (data) => api.post('/api/verify-otp', data)
-export const activate = (data) => api.post('/api/activate', data)
-export const logout = (data) => api.post('/api/logout')
-
-
-
-// interceptors
-
-
+// Interceptors
 api.interceptors.response.use(
-   (config) => {
-      return config;
+   (response) => {
+      return response;
    },
    async (error) => {
-      const originalRequest = error.config;
-      if (
-         error.response.status === 401 &&
-         originalRequest &&
-         !originalRequest._isRetry
-      ) {
-         originalRequest.isRetry = true;
-         try {
-            axios.get(
-               `${process.env.REACT_APP_API}/api/refresh`,
-               {
-                  withCredentials: true,
-               }
-            ).then((res) => {
-               if (res) {
-                  return api.request(originalRequest);
-               }
+      if (error.response.status === 401) {
+         await axios
+            .get(`${process.env.REACT_APP_API}/api/refresh`, {
+               withCredentials: true,
             })
-
-         } catch (err) {
-            console.log(err.message);
-         }
+            .catch((err) => {
+               return Promise.reject(err);
+            });
+         console.log(error.config);
+         return axios.request(error.config); // here error throwing while invoking the actually failed API
+      } else {
+         return Promise.reject(error);
       }
-      throw error;
    }
 );
-
-
-function sendWithRetry() {
-}
-
-
-
 export default api;

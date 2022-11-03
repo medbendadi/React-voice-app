@@ -1,0 +1,142 @@
+.dropdown{
+   position: relative;
+}
+
+.dropdown__toggle{
+   border: 0;
+   outline: 0;
+   background-color: transparent;
+   position: relative;
+}
+.dropdown__toggle svg{
+      font-size: 1.5rem;
+      color: var(--main-text);
+}
+
+.dropdown__toggleBadge{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: absolute;
+   top: -12px;
+   right: -10px;
+   height: 20px;
+   width: 20px;
+   border-radius: 50%;
+   background-color: var(--main-bg);
+   color: var(--main-text);
+   font-size: .8rem;
+
+}
+
+.dropdown__content{
+   z-index: 90;
+   position: absolute;
+   top: calc(100% + 5px);
+   right: 0;
+   width: max-content;
+   font-size: 13px;
+   max-width: 300px;
+   background-color: var(--input-bg);
+   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+   border-radius: 10px;
+   overflow: hidden;
+   transform-origin: top right;
+   transform: scale(0);
+   transition:  transform .3s ease 0s;
+}
+
+
+.dropdown__content.option {
+   transform-origin: top !important;
+   width: 116px;
+   right: auto;
+
+}
+
+.dropdown__footer{
+   padding: 10px 20px;
+   text-align: center;
+}
+
+.topnav__rightUser{
+   display: flex;
+   align-items: center;
+}
+
+.topnav__rightUser__image{
+   width: 40px;
+   height: 40px;
+   border-radius: 50%;
+   overflow: hidden;
+   
+}
+.topnav__rightUser__image img{
+   object-fit: cover;
+   width: 100%;
+   height: 100%;
+}
+
+.topnav__rightUser__name{
+   /* font-size: 20px; */
+   /* font-weight: bold; */
+   color: var(--main-text);
+   margin-right: 10px;
+
+}
+
+
+.notificationItem{
+   display: flex;
+   align-items: center;
+   padding: 15px 40px;
+   cursor: pointer;
+   color: var(--main-text);
+}
+
+.notificationItem:hover{
+   background-color: var(--blue);
+}
+.notificationItem svg{
+   margin-right: 20px;
+   font-size: 1.3rem;
+}
+
+.dropdown__content a{
+   text-decoration: none;
+}
+
+@media screen and (min-width:2000px) {
+   .dropdown__footer{
+      padding: 20px;
+   }
+   .dropdown__content{
+      max-width: 400px;
+      font-size: 1rem;
+   }
+   .dropdown__toggle-badge{
+      height: 25px;
+      width: 25px;
+   }
+   .dropdown__toggle i{
+      font-size: 2.5rem;
+   }
+   .topnav__rightUser__name{
+      font-size: 1rem;
+   }
+   .notificationItem{
+      padding: 20px;
+      
+   }
+   .notificationItem i{
+      font-size: 1.5rem;
+   }
+}
+
+@media screen and (max-width:650px) {
+.dropdown__content{
+   max-width: 235px;
+      right: -20px;
+      top: calc(100% + 10px);
+}
+}

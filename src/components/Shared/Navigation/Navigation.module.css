@@ -1,5 +1,5 @@
 .navbar{
-   padding: 20px 0;
+   padding: 20px 3rem;
    display: flex;
    align-items: center;
    justify-content: space-between;
@@ -12,6 +12,7 @@
    font-size: 22px;
    display: flex;
    align-items: center;
+   cursor: pointer;
 }
 
 .logoImage{
@@ -21,4 +22,34 @@
 .logoText{
    font-family: 'Montserrat', sans-serif;
    margin-left: 10px;
+}
+
+.navRight{
+   display: flex;
+   align-items: center;
+   /* justify-content: center; */
+}
+
+.navRight button{
+   background-color: var(--blue);
+   padding: 7px;
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border: none;
+   outline: none;
+   cursor: pointer;
+   
+   color: var(--main-text);
+
+}
+
+
+.avatar{
+   border-radius: 50%;
+   object-fit: cover;
+   border: 3px solid var(--blue);
+   margin: 0 20px;
+   margin-right: 10px;
 }

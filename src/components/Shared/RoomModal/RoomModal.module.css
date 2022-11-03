@@ -1,0 +1,73 @@
+.modalMask {
+   position: fixed;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   background-color: rgba(0,0,0,0.6);
+   z-index: 9998;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.body{
+   position: relative;
+   width: 50%;
+   max-width: 500px;
+   background-color: var(--second-bg);
+   border-radius: 20px;
+}
+
+.close{
+   background-color: transparent;
+   position: absolute;
+   right: 10px;
+   top: 10px;
+   color: var(--main-text);
+}
+
+
+.header{
+   text-align: center;
+   padding: 30px;
+   border-bottom: 2px solid var(--input-bg);
+}
+.header h2{
+   margin-bottom: 10px;
+}
+
+
+
+.footer{
+   padding: 30px;
+   text-align: center;
+}
+
+.footer h2{
+   margin-bottom: 20px;
+   font-size: 20px;
+}
+
+.footer button{
+   background-color: var(--success);
+   color: var(--main-text);
+   display: flex;
+   align-items: center;
+   width: 200px;
+   justify-content: center;
+   padding: 7px 10px;
+   border-radius: 20px;
+   margin: 0 auto;
+   font-size: 1rem;
+   font-weight: bold;
+   transition: all .3s ease-in-out;
+}
+
+.footer button:hover{
+   background-color: #13763b;
+}
+
+.footer span{
+   margin-left: 5px;
+}

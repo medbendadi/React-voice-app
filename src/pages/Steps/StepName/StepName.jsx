@@ -13,7 +13,8 @@ const StepName = ({ onNext }) => {
    const { name } = useSelector((state) => state.activate)
    const [username, setUsername] = useState(name)
    const dispatch = useDispatch()
-   const nextStep = () => {
+   const nextStep = (e) => {
+      e.preventDefault()
       if (!username) {
          return toast.error('Please Enter valid Name')
       }
@@ -22,21 +23,23 @@ const StepName = ({ onNext }) => {
    }
    return (
       <>
-         <Card title='What Should We Call You ? ' icon='mail-icon'>
-            <TextInput
-               value={username}
-               type='text'
-               placeholder='Username'
-               onChange={(e) => setUsername(e.target.value)} />
-            <div>
-               <p className={styles.paragraph}>
-                  89% of Infinity Community use real names
-               </p>
+         <form onSubmit={nextStep}>
+            <Card title='What Should We Call You ? ' icon='mail-icon'>
+               <TextInput
+                  value={username}
+                  type='text'
+                  placeholder='Username'
+                  onChange={(e) => setUsername(e.target.value)} />
                <div>
-                  <Button onClick={nextStep} text='Next' />
+                  <p className={styles.paragraph}>
+                     89% of Infinity Community use real names
+                  </p>
+                  <div>
+                     <Button onClick={nextStep} text='Next' />
+                  </div>
                </div>
-            </div>
-         </Card>
+            </Card>
+         </form>
       </>
    )
 }

@@ -1,0 +1,95 @@
+.container{
+   display: flex;
+
+}
+
+.imageContainer{
+   width: 30%;
+   /* background: green; */
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.image{
+   width: 200px;
+   height: 200px;
+   border-radius: 50%;
+   overflow: hidden;
+   margin-right: 10px;
+   position: relative;
+   transition: .3s filter;
+}
+
+.image:hover div{
+   background-color: rgba(0, 0, 0, .15);
+}
+
+
+.image div{
+   z-index: 10;
+   position: absolute;
+   right: 0;
+   left: 0;
+   top: 0;
+   bottom: 0;
+   transition: .3s background-color;
+}
+
+.image:hover svg{
+   opacity: 1;
+   filter: brightness(1);
+
+}
+
+.image img{
+   object-fit: cover;
+   width: 100%;
+   height: 100%;
+   cursor: pointer;
+}
+
+
+.image svg{
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   font-size: 2.5rem;
+   color: #fff;
+   pointer-events: none;
+   opacity: 0;
+   transition: .3s opacity;
+   z-index: 12;
+}
+
+.image input{
+   position: absolute;
+   right: 0;
+   left: 0;
+   top: 0;
+   bottom: 0;
+   opacity: 0;
+   cursor: pointer; 
+   z-index: 13;
+}
+.contentContainer{
+   width: 70%;
+   /* background: red; */
+   padding: 0 10rem;
+}
+
+.contentContainer div label{
+   margin: 10px 0;
+   display: block;
+   text-align: center;
+}
+
+.button{
+   background-color: var(--blue);
+   color: var(--main-text);
+   padding: 12px 80px;
+   margin: 10px auto;
+   display: block;
+   border-radius: 20px;
+}

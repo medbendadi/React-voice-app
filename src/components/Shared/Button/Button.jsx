@@ -4,7 +4,7 @@ import React from 'react'
 import styles from './Button.module.css'
 const Button = ({ text, onClick }) => {
    return (
-      <button onClick={onClick} className={styles.button}>
+      <button onClick={onClick} type='submit' className={styles.button}>
          <span>
             {text}
          </span>

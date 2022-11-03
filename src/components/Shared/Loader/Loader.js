@@ -6,9 +6,11 @@ const Loader = ({ message }) => {
    const [animationData, setAnimationData] = useState();
 
    useEffect(() => {
-      let isActive = true;
-      if (isActive) import('./loader.json').then(setAnimationData);
-      return () => { isActive = false };
+      let unMounted = true;
+
+      if (unMounted) import('./loader.json').then(setAnimationData);
+
+      return () => { unMounted = false };
    }, []);
    if (!animationData) return null;
    return (

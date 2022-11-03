@@ -1,36 +1,71 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { logout } from '../../../http'
 import { useDispatch, useSelector } from 'react-redux'
 import { setAuth } from '../../../app/authSlice'
 
 import styles from './Navigation.module.css'
 
+import Dropdown from '../Dropdown.jsx/Dropdown'
+
+
+const user_menu = [
+   {
+      icon: "bx bx-user",
+      content: "Profile"
+   },
+   {
+      icon: "bx bx-log-out-circle bx-rotate-180",
+      content: "Logout"
+   }
+]
+
+
+
+
 const Navigation = () => {
+   const [modal, setModal] = useState(false);
+   const navigate = useNavigate()
+
+
    const dispatch = useDispatch()
-   const { isAuth } = useSelector((state) => state.auth)
+   const { isAuth, user } = useSelector((state) => state.auth)
+
    async function logoutUser() {
       try {
          const { data } = await logout()
-         console.log(data);
-         dispatch(setAuth(data))
+         if (data) {
+            dispatch(setAuth(data))
+         }
       } catch (err) {
-         console.log(err);
+         dispatch(setAuth({ "user": null, "auth": false }))
       }
    }
+   const handleModal = () => {
+      setModal(true)
+   }
+
+   function handleManualHome() {
+      navigate('/rooms')
+   }
    return (
-      <nav className={`container ${styles.navbar}`}>
-         <Link to='/' className={styles.brandStyling}>
+      <nav className={` ${styles.navbar}`}>
+         <div onClick={handleManualHome} className={styles.brandStyling}>
             <img
                className={styles.logoImage}
                src="/images/logo.png"
                alt="logo" />
             <span className={styles.logoText}>Infinity</span>
-         </Link>
+         </div>
          {
-            (isAuth) ? (
-               <button onClick={logoutUser} className={styles.logoutButton}>Logout</button>
+            (isAuth && user.avatar) ? (
+               <Dropdown
+                  user={user}
+                  contentData={user_menu}
+                  setModal={handleModal}
+                  logoutUser={logoutUser}
+               />
             ) : null
          }
 

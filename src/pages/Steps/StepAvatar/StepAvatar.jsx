@@ -33,7 +33,8 @@ const StepAvatar = () => {
       }
    }
 
-   async function submit() {
+   async function submit(e) {
+      e.preventDefault()
       if (!(name || avatar)) return toast.error('Invalid Photo')
       setLoading(true)
       let currentAvatar;
@@ -68,30 +69,32 @@ const StepAvatar = () => {
    if (loading) return <Loader message="Activation in progress..." />
    return (
       <>
-         <Card title={`Okay, ${name} !`} icon='mail-icon'>
-            <p className={styles.subHeading}>Let's Select A Photo</p>
-            <div className={styles.avatarWrapper}>
-               <img src={image} alt="Avatar" />
-            </div>
-            <div>
-               <input
-                  onChange={(e) => imageChange(e)}
-                  id='avatarInput'
-                  type="file"
-                  className={styles.avatarInput}
-                  accept=".png, .jpg, .jpeg"
-               />
-               <label
-                  className={styles.avatarLabel}
-                  htmlFor="avatarInput"
-               >
-                  Choose a different photo
-               </label>
-            </div>
-            <div>
-               <Button onClick={submit} text='Next' />
-            </div>
-         </Card>
+         <form onSubmit={submit}>
+            <Card title={`Okay, ${name} !`} icon='mail-icon'>
+               <p className={styles.subHeading}>Let's Select A Photo</p>
+               <div className={styles.avatarWrapper}>
+                  <img src={image} alt="Avatar" />
+               </div>
+               <div>
+                  <input
+                     onChange={(e) => imageChange(e)}
+                     id='avatarInput'
+                     type="file"
+                     className={styles.avatarInput}
+                     accept=".png, .jpg, .jpeg"
+                  />
+                  <label
+                     className={styles.avatarLabel}
+                     htmlFor="avatarInput"
+                  >
+                     Choose a different photo
+                  </label>
+               </div>
+               <div>
+                  <Button text='Next' />
+               </div>
+            </Card>
+         </form>
       </>
    )
 }
