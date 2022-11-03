@@ -35,7 +35,6 @@ const Room = () => {
    const [isMute, setMute] = useState(true)
    const [handOn, setHand] = useState(false)
 
-   console.log(localMediaDevices.current);
 
    useEffect(() => {
       handleMute(isMute, user.id)
@@ -67,7 +66,6 @@ const Room = () => {
                   toast.error('No Room with this id')
                   return navigate('/rooms')
                }
-               console.log(data);
                setRoom(data);
             }
             fetchRoom()
@@ -83,7 +81,6 @@ const Room = () => {
                   navigate('/rooms')
                   return;
                }
-               console.log(data);
                setRoom(data);
             }
             fetchRoom()
@@ -96,9 +93,7 @@ const Room = () => {
 
 
    function onMicChange(e) {
-      console.log(e.target.value);
       let currentMic = localMediaDevices.current.filter(dv => dv.label === e.target.value)
-      console.log(currentMic[0].deviceId);
       handleMicDevice(currentMic[0].deviceId, user.id)
    }
 

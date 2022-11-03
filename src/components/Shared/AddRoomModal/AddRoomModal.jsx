@@ -42,7 +42,6 @@ const AddRoomModal = ({ onClose }) => {
       if (roomType === 'open') {
          try {
             const { payload } = await dispatch(addRoom({ topic, roomType }))
-            console.log(payload);
             navigate(`/room/${payload.id}`)
          } catch (err) {
             console.log(err);
@@ -54,7 +53,6 @@ const AddRoomModal = ({ onClose }) => {
          }
          try {
             const { payload } = await dispatch(addPrivateRoom({ topic, roomType, password: roomPasswordInput }))
-            console.log(payload);
             navigate(`/room/${payload.id}/${roomPasswordInput}`)
          } catch (err) {
             console.log(err);

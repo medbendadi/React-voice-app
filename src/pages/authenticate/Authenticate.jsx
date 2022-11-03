@@ -12,10 +12,7 @@ const Authenticate = () => {
    const Step = steps[step]
 
    const onNext = () => {
-      if (step === 2) {
-         return alert('finished')
-      }
-      setStep(prevent => prevent + 1)
+      setStep(step + 1)
    }
    return (
       <Step onNext={onNext} />

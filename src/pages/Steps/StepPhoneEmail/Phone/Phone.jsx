@@ -24,7 +24,6 @@ const Phone = ({ onNext }) => {
       // if (res.ok) {
       const resp = await sendOtp({ phone: phoneNumber });
       if (resp.status === 200) {
-         console.log(resp.data);
          dispatch(setOtp({ phone: resp.data.phone, hash: resp.data.hash }))
          onNext()
       } else {

@@ -28,7 +28,6 @@ const Rooms = () => {
    useEffect(() => {
       const fetchRooms = async () => {
          const res = await getAllRooms();
-         console.log(res);
          if (res.status === 200) {
             setRooms(res.data);
          }
@@ -60,7 +59,6 @@ const Rooms = () => {
       }
       try {
          const { data } = await getRoom(searchInput)
-         console.log(data);
          setSearchedRoom(data)
          showRoomModal()
          // setRoom((prev) => data);
@@ -69,7 +67,6 @@ const Rooms = () => {
          console.log(err);
          toast.error('No Room with this id')
       }
-      console.log(searchInput);
    }
 
    return loading ? <Loader message='Wait. Fetching rooms for you... ' /> : (

@@ -20,10 +20,8 @@ const RoomModal = ({ onClose, room }) => {
       if (!roomPasswordInput) {
          return toast.error('Enter room password first')
       }
-      // console.log(room._id);
       try {
          const { data } = await getPrivateRoom(room._id, { password: roomPasswordInput })
-         console.log(data.id);
          navigate(`/room/${room._id}/${roomPasswordInput}`)
       } catch (err) {
          return toast.error('Wrong Password!')

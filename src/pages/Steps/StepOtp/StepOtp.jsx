@@ -13,14 +13,14 @@ import { toast } from 'react-toastify'
 
 const StepOtp = () => {
    const dispatch = useDispatch()
-   const { phone, hash } = useSelector((state) => state.auth.otp)
+   const { phone, hash, email } = useSelector((state) => state.auth.otp)
    const [state, setState] = useState({ value: "", otp1: "", otp2: "", otp3: "", otp4: "", disable: true })
 
 
 
    async function submit(e) {
       e.preventDefault()
-      if (!state.otp1 || !state.otp2 || !state.otp3 || !state.otp4 || !phone || !hash) {
+      if (!state.otp1 || !state.otp2 || !state.otp3 || !state.otp4 || (!phone && !email) || !hash) {
          toast.error('Invalid Code')
          return;
 
@@ -28,8 +28,13 @@ const StepOtp = () => {
       const otp = state.otp1 + state.otp2 + state.otp3 + state.otp4
 
       try {
-         const { data } = await verifyOtp({ otp, phone, hash })
-         dispatch(setAuth(data))
+         if (phone) {
+            const { data } = await verifyOtp({ otp, phone, hash })
+            dispatch(setAuth(data))
+         } else {
+            const { data } = await verifyOtp({ otp, email, hash })
+            dispatch(setAuth(data))
+         }
       } catch (err) {
          console.log(err);
       }
@@ -37,7 +42,6 @@ const StepOtp = () => {
 
    function handleChange(value1, event) {
       setState({ ...state, [value1]: event.target.value })
-      console.log(event.target.value);
    }
 
    const inputfocus = (elmnt) => {

@@ -13,19 +13,23 @@ import { update } from '../../http';
 const initial = {
    name: '',
    image: '',
+   email: '',
+   phone: ''
 }
 
 const Profile = () => {
    const { user } = useSelector(state => state.auth);
+   // const { email: userEmail, phone: userPhone } = useSelector(state => state.auth.otp);
    const [state, setState] = useState(initial)
-   const { name, image } = state;
+   const { name, image, email, phone } = state;
    const [imageUpload, setImageUpload] = useState('')
    const dispatch = useDispatch()
    const [unMounted, setUnMounted] = useState(false)
    const toastId = React.useRef(null);
 
    useEffect(() => {
-      setState({ ...state, 'name': user.name, 'image': user.avatar })
+      setState({ ...state, 'name': user.name, 'image': user.avatar, 'phone': user.phone, 'email': user.email, })
+      // if (user.phone === '') { }
    }, [])
 
    const handleChange = (e) => {
@@ -38,23 +42,18 @@ const Profile = () => {
       const reader = new FileReader()
       reader.readAsDataURL(file)
       reader.onload = function () {
-         console.log(reader.result);
          setState({ ...state, image: reader.result })
-         // setImage(reader.result)
       }
    }
    async function submit() {
-      if (!(name || image)) return toast.error('Invalid Photo Or name')
+      if (!(name || image || !phone || !email)) return toast.error('Invalid Photo Or name')
       toastId.current = toast.loading('Updating')
       try {
-         const { data } = await update(user.id, { name: name || user.name, avatar: image === user.avatar ? 'lastImage' : image })
+         const { data } = await update(user.id, { name: name || user.name, avatar: image === user.avatar ? 'lastImage' : image, phone: phone || user.phone, email: email || user.email })
          if (data.auth) {
             if (!unMounted) {
-               setTimeout(() => {
-                  console.log(data);
-                  dispatch(setAuth(data))
-                  toast.dismiss(toastId.current)
-               }, 3000);
+               dispatch(setAuth(data))
+               toast.dismiss(toastId.current)
             }
          }
 
@@ -111,8 +110,22 @@ const Profile = () => {
                         fullwidth='true'
                         placeholder='Phone Number'
                         id='phone'
-                        value={`+${user.phone}`}
-                        disabled
+                        name='phone'
+                        value={`+${phone}`}
+                        onChange={(e) => setState({ ...state, phone: e.target.value.replace('+', '') })}
+                        disabled={user.phone ? true : false}
+                     />
+                  </div>
+                  <div>
+                     <label htmlFor="email">Email</label>
+                     <TextInput
+                        fullwidth='true'
+                        placeholder='Email'
+                        name='email'
+                        id='email'
+                        value={`${email}`}
+                        onChange={handleChange}
+                        disabled={user.email ? true : false}
                      />
                   </div>
                   <button className={styles.button} onClick={submit}>Update</button>

@@ -291,7 +291,6 @@ export const useWebRTC = (roomId, user) => {
    }, []);
 
    const provideRef = (instance, userId) => {
-      // console.log(instance.sinkId);
       audioElements.current[userId] = instance;
    };
 
@@ -308,17 +307,8 @@ export const useWebRTC = (roomId, user) => {
             }
             console.error(errorMessage);
             // Jump back to first output device in the list as it's the default.
-            // outputSelector.selectedIndex = 0;
          });
-         // console.log(audioElements.current[userId]);
       }
-      // if (typeof provideRef.sinkId !== 'undefined') {
-      // }
-      // audioElements.current[user.id] = mic
-      // console.log(cd.sinkId);
-      // console.log(localMediaStream.current.getTracks()[0])
-      // localMediaStream.current.getTracks()[0].enabled = isMute;
-      // console.log(localMediaStream.current.getTracks());
    }
 
    const handleMute = (isMute, userId) => {

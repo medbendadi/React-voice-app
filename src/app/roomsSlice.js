@@ -13,7 +13,6 @@ const initialState = {
 
 export const fetchRooms = createAsyncThunk('rooms/fetchRooms', async () => {
    const res = await getAllRooms();
-   console.log(res.data);
    return res.data
 })
 
@@ -76,14 +75,12 @@ export const roomsSlice = createSlice({
          .addCase(addRoom.fulfilled, (state, action) => {
             state.status = "succeeded"
             state.rooms.push(action.payload)
-            console.log(action.payload);
             // const newPayload = { ...action.payload.test }
             // return newPayload
          })
          .addCase(deleteRoom.fulfilled, (state, action) => {
 
             if (!action.payload?.id) {
-               console.log(action.payload);
                console.log('Delete could not complete');
                return;
             }
