@@ -6,7 +6,9 @@ export const socketInit = () => {
       reconnectionAttempt: 'Infinity',
       timeout: 10000,
       transport: ['websocket'],
-   };
+   }
 
-   return io('http://localhost:5000', options)
+
+
+   return io(process.env.REACT_APP_API, options)
 }
