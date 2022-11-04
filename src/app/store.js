@@ -8,5 +8,6 @@ export const store = configureStore({
       auth,
       activate,
       rooms
-   }
+   },
+   devTools: false
 })
