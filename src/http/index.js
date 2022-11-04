@@ -9,6 +9,9 @@ const api = axios.create({
    },
 });
 
+api.defaults.withCredentials = true
+axios.defaults.withCredentials = true
+
 // List of all the endpoints
 export const sendOtp = (data) => api.post('/api/send-otp', data);
 export const verifyOtp = (data) => api.post('/api/verify-otp', data);
