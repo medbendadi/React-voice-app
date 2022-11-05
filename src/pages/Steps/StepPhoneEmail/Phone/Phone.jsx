@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import Button from '../../../../components/Shared/Button/Button'
 import Card from '../../../../components/Shared/Card/Card'
 import InputPhone from '../../../../components/Shared/InputPhone/InputPhone'
@@ -12,7 +12,7 @@ import { setOtp } from '../../../../app/authSlice'
 const Phone = ({ onNext }) => {
    const [phoneNumber, setPhoneNumber] = useState()
    const dispatch = useDispatch();
-
+   const toastId = useRef(null)
    const handleNext = async (e) => {
       e.preventDefault()
       if (!phoneNumber) return toast.error('Invalid Number');
@@ -22,9 +22,11 @@ const Phone = ({ onNext }) => {
       // const res = await fetch(url)
 
       // if (res.ok) {
+      toastId.current = toast.loading('Sending')
       const resp = await sendOtp({ phone: phoneNumber });
       if (resp.status === 200) {
          dispatch(setOtp({ phone: resp.data.phone, hash: resp.data.hash }))
+         toast.dismiss(toastId.current)
          onNext()
       } else {
          toast.error('Invalid Number')

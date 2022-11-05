@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import Button from '../../../../components/Shared/Button/Button'
 import Card from '../../../../components/Shared/Card/Card'
 import TextInput from '../../../../components/Shared/TextInput/TextInput'
@@ -23,11 +23,14 @@ const emailVerification = (email) => {
 const Email = ({ onNext }) => {
    const dispatch = useDispatch()
    const [email, setEmail] = useState('')
+   const toastId = useRef(null)
    const handleNext = async () => {
       if (emailVerification(email)) {
+         toastId.current = toast.loading('Sending')
          const resp = await sendOtp({ email: email });
          if (resp.status === 200) {
             dispatch(setOtp({ email: resp.data.email, hash: resp.data.hash }))
+            toast.dismiss(toastId.current)
             onNext()
          } else {
             toast.error('Invalid Number')
