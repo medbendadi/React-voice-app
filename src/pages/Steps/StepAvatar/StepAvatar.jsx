@@ -28,8 +28,8 @@ const StepAvatar = () => {
             dispatch(setAvatar(reader.result))
          }
       } else {
-         setImage(process.env.REACT_APP_DEFAULT_IMAGE_URL_1 + process.env.REACT_APP_DEFAULT_IMAGE_URL_2)
-         dispatch(setAvatar(process.env.REACT_APP_DEFAULT_IMAGE_URL_1 + process.env.REACT_APP_DEFAULT_IMAGE_URL_2))
+         setImage(process.env.REACT_APP_DEFAULT_IMAGE_URL)
+         dispatch(setAvatar(process.env.REACT_APP_DEFAULT_IMAGE_URL))
       }
    }
 
@@ -40,7 +40,7 @@ const StepAvatar = () => {
       let currentAvatar;
       if (image === '/images/default.png') {
          // imageChange('', true)
-         currentAvatar = process.env.REACT_APP_DEFAULT_IMAGE_URL_1 + process.env.REACT_APP_DEFAULT_IMAGE_URL_2
+         currentAvatar = process.env.REACT_APP_DEFAULT_IMAGE_URL + process.env.REACT_APP_DEFAULT_IMAGE_URL
       }
 
       try {
