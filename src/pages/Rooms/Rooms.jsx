@@ -8,7 +8,6 @@ import AddRoomModel from '../../components/Shared/AddRoomModal/AddRoomModal'
 import { getAllRooms, getRoom } from '../../http';
 import styles from './Rooms.module.css'
 import Loader from '../../components/Shared/Loader/Loader';
-import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import RoomModal from '../../components/Shared/RoomModal/RoomModal';
 
