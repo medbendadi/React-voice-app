@@ -50,7 +50,7 @@ const StepAvatar = () => {
                setTimeout(() => {
                   dispatch(setAuth(data))
                   setLoading(false)
-               }, 3000);
+               }, 1000);
             }
          }
 
